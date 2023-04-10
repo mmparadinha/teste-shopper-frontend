@@ -13,12 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/mmparadinha/teste-shopper-frontend.git"
   },
-  "author": "mmparadinha",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mmparadinha/teste-shopper-frontend/issues"
-  },
-  "homepage": "https://github.com/mmparadinha/teste-shopper-frontend#readme",
   "devDependencies": {
     "eslint": "^8.38.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -28,11 +23,28 @@
     "eslint-plugin-react-hooks": "^4.6.0"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.11.16",
+    "@mui/styled-engine-sc": "^5.11.11",
     "axios": "^1.3.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
     "react-scripts": "^5.0.1",
     "styled-components": "^5.3.9"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

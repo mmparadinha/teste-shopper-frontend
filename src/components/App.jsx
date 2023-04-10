@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import GlobalStyle from './GlobalStyles';
-import Main from './homepage/Main';
+import GlobalStyle from './GlobalStyle';
+import Homepage from './Homepage';
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Homepage />} />
         </Routes>
       </BrowserRouter>
     </>
