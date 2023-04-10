@@ -8,8 +8,6 @@ const MainContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  justify-content: center;
-  align-items: start;
 `;
 
 export default MainContainer;

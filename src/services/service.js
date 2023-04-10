@@ -7,6 +7,12 @@ function getAllProducts() {
   return promise;
 }
 
+function getCart() {
+  const promise = axios.get(`${URL_BASE}/cart`);
+  return promise;
+}
+
 export {
-  getAllProducts
+  getAllProducts,
+  getCart
 };

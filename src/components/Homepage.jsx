@@ -1,12 +1,27 @@
+import { useEffect, useState } from 'react';
 import MainContainer from './MainContainer';
 import Item from './items/Item';
+import { getAllProducts } from '../services/service';
 
 function Homepage() {
-  const frutas = [{ name: 'AZEITE  PORTUGUÊS EXTRA VIRGEM GALLO 500ML', price: 12 }, { name: 'BEBIDA ENERG�TICA VIBE 2L', price: 15 }, { name: 'ENERG�TICO RED BULL ENERGY DRINK 250ML', price: 2 }, { name: 'DESODORANTE AEROSOL REXONA ANTIBACTERIANO + INVISIBLE PROTECTION FEMININO 150ML', price: 9 }, { name: 'melão', price: 122 }, { name: 'laranja', price: 5 }, { name: 'uva', price: 3 }, { name: 'melancia', price: 45 }, { name: 'maçã', price: 1 }];
+  const [products, setProducts] = useState(null);
+
+  async function listProducts() {
+    try {
+      const res = await getAllProducts();
+      setProducts(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    listProducts();
+  }, []);
 
   return (
     <MainContainer>
-      {frutas.map((data) => <Item data={data} />)}
+      {products && products.map((product) => <Item key={product.id} product={product} />)}
     </MainContainer>
   );
 }

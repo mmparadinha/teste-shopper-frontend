@@ -6,11 +6,11 @@ import DescriptionBox from './DescriptionBox';
 import AddButton from './AddButton';
 import CardContentNoPadding from './CardContentNoPadding';
 
-export default function Item({ data }) {
+export default function Item({ product }) {
   return (
     <Card sx={{ width: 200, height: 200, p: 1 }}>
       <CardContentNoPadding>
-        <Tooltip disableFocusListener disableTouchListener title={data.name}>
+        <Tooltip disableFocusListener disableTouchListener title={product.name}>
           <Typography
             gutterBottom
             variant="h6"
@@ -23,17 +23,17 @@ export default function Item({ data }) {
               WebkitBoxOrient: 'vertical'
             }}
           >
-            {data.name}
+            {product.name}
           </Typography>
         </Tooltip>
 
         <DescriptionBox>
           <Typography color="text.secondary">
             <p>
-              {`R$ ${data.price}`}
+              {`R$ ${product.price}`}
             </p>
             <p>
-              Em estoque
+              {`Em estoque: ${product.qty_stock}`}
             </p>
           </Typography>
 
