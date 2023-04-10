@@ -10,12 +10,12 @@ export default function Item({ product }) {
   return (
     <Card sx={{ width: 200, height: 200, p: 1 }}>
       <CardContentNoPadding>
-        <Tooltip disableFocusListener disableTouchListener title={product.name}>
+        <Tooltip disableFocusListener title={product.name}>
           <Typography
             gutterBottom
             variant="h6"
             sx={{
-              height: 129,
+              height: 128,
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               display: '-webkit-box',
@@ -28,16 +28,23 @@ export default function Item({ product }) {
         </Tooltip>
 
         <DescriptionBox>
-          <Typography color="text.secondary">
-            <p>
-              {`R$ ${product.price}`}
-            </p>
-            <p>
-              {`Em estoque: ${product.qty_stock}`}
-            </p>
-          </Typography>
+          {product.qty_stock === 0
+            ? (
+              <Typography color="text.secondary">
+                <span>{`R$ ${product.price}`}</span>
+                <br />
+                <span style={{ color: '#ff0000' }}>Fora de estoque!</span>
+              </Typography>
+            )
+            : (
+              <Typography color="text.secondary">
+                <span style={{ color: '#1a8604', fontWeight: 700 }}>{`R$ ${product.price}`}</span>
+                <br />
+                <span>{`Em estoque: ${product.qty_stock}`}</span>
+              </Typography>
+            )}
 
-          <AddButton variant="contained"><AddIcon /></AddButton>
+          <AddButton variant="contained" aria-label="add"><AddIcon /></AddButton>
         </DescriptionBox>
 
       </CardContentNoPadding>
