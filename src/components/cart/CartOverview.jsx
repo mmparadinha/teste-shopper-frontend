@@ -5,10 +5,17 @@ import CartContext from '../../contexts/CartContext';
 import CartItemCard from './CartItemCard';
 
 export default function CartOverview() {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
 
-  function removeItem() {
+  function removeItem(product) {
+    const productIndex = cart.findIndex((obj) => obj.name === product.name);
 
+    if (productIndex !== -1) {
+      cart.splice(productIndex, 1);
+    }
+
+    setCart(cart);
+    localStorage.setItem('shopper-cart', JSON.stringify(cart));
   }
 
   return (
@@ -24,7 +31,7 @@ export default function CartOverview() {
         </div>
 
         <div style={{ textAlign: 'right', width: 78 }}>
-          <IconButton aria-label="delete" onClick={() => removeItem()}>
+          <IconButton aria-label="delete" onClick={() => removeItem(product)}>
             <DeleteIcon />
           </IconButton>
 

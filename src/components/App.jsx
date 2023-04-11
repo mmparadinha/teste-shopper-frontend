@@ -5,7 +5,7 @@ import Homepage from './homepage/Homepage';
 import CartContext from '../contexts/CartContext';
 
 function App() {
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('shopper-cart'))?.products || []);
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('shopper-cart')) || []);
   const cartInfo = useMemo(() => ({ cart, setCart }), [cart]);
 
   return (

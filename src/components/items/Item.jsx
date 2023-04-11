@@ -28,7 +28,7 @@ export default function Item({ product }) {
     }
 
     setCart(products);
-    localStorage.setItem('shopper-cart', JSON.stringify({ products }));
+    localStorage.setItem('shopper-cart', JSON.stringify(products));
   }
 
   return (
