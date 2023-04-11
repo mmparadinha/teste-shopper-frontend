@@ -25,7 +25,7 @@ export default function CartDrawer() {
 
   const list = (anchor) => (
     <Box
-      sx={{ display: 'flex', flexDirection: 'column', width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      sx={{ display: 'flex', flexDirection: 'column', width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 350 }}
       p={2}
       gap={2}
       role="presentation"
