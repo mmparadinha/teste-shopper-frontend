@@ -40,7 +40,7 @@ export default function CartReview() {
     <>
       <Typography variant="h5" sx={{ textAlign: 'right', fontWeight: 700 }}>
         {`Custo total: R$ ${cart.filter((product) => product.amount <= product.qty_stock)
-          .reduce((sum, record) => sum + (record.amount * record.price), 0)}`}
+          .reduce((sum, record) => sum + (record.amount * record.price), 0).toFixed(2)}`}
       </Typography>
 
       <form style={{ display: 'flex', flexDirection: 'column', gap: 15 }} onSubmit={sendOrder}>

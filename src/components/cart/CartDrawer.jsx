@@ -1,11 +1,9 @@
 import { Fragment, useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Divider from '@mui/material/Divider';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import CartButton from './CartButton';
 import CartOverview from './CartOverview';
-import CartReview from './CartReview';
 
 export default function CartDrawer() {
   const [state, setState] = useState({
@@ -32,8 +30,6 @@ export default function CartDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <CartOverview />
-      <Divider />
-      <CartReview />
     </Box>
   );
 
