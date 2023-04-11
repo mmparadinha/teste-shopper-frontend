@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { Fragment, useState } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
@@ -8,15 +8,15 @@ import CartOverview from './CartOverview';
 import CartReview from './CartReview';
 
 export default function CartDrawer() {
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     top: false,
     left: false,
     bottom: false,
-    right: true
+    right: false
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (event.type === 'keydown' && event.key !== 'Escape') {
       return;
     }
 
@@ -25,11 +25,10 @@ export default function CartDrawer() {
 
   const list = (anchor) => (
     <Box
-      sx={{ display: 'flex', flexDirection: 'column', width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 350 }}
+      sx={{ display: 'flex', flexDirection: 'column', minWidth: 350 }}
       p={2}
       gap={2}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <CartOverview />
@@ -41,7 +40,7 @@ export default function CartDrawer() {
   return (
     <div>
       {['right'].map((anchor) => (
-        <React.Fragment key={anchor}>
+        <Fragment key={anchor}>
           <CartButton onClick={toggleDrawer(anchor, true)} variant="contained" aria-label="cart"><ShoppingCartIcon /></CartButton>
           <Drawer
             anchor={anchor}
@@ -50,7 +49,7 @@ export default function CartDrawer() {
           >
             {list(anchor)}
           </Drawer>
-        </React.Fragment>
+        </Fragment>
       ))}
     </div>
   );
