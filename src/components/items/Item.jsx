@@ -5,6 +5,8 @@ import Tooltip from '@mui/material/Tooltip';
 import DescriptionBox from './DescriptionBox';
 import AddButton from './AddButton';
 import CardContentNoPadding from './CardContentNoPadding';
+import ProductOutOfStock from './ProductOutOfStock';
+import ProductInStock from './ProductInStock';
 
 export default function Item({ product }) {
   return (
@@ -29,20 +31,7 @@ export default function Item({ product }) {
 
         <DescriptionBox>
           {product.qty_stock === 0
-            ? (
-              <Typography color="text.secondary">
-                <span>{`R$ ${product.price}`}</span>
-                <br />
-                <span style={{ color: '#ff0000' }}>Fora de estoque!</span>
-              </Typography>
-            )
-            : (
-              <Typography color="text.secondary">
-                <span style={{ color: '#1a8604', fontWeight: 700 }}>{`R$ ${product.price}`}</span>
-                <br />
-                <span>{`Em estoque: ${product.qty_stock}`}</span>
-              </Typography>
-            )}
+            ? <ProductOutOfStock product={product} /> : <ProductInStock product={product} />}
 
           <AddButton variant="contained" aria-label="add"><AddIcon /></AddButton>
         </DescriptionBox>

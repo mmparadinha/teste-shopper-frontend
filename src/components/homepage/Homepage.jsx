@@ -3,7 +3,7 @@ import { Container, Typography } from '@mui/material';
 import ProductsContainer from './ProductsContainer';
 import Item from '../items/Item';
 import { getAllProducts } from '../../services/service';
-import TemporaryDrawer from '../cart/cartDrawer';
+import CartDrawer from '../cart/CartDrawer';
 
 function Homepage() {
   const [products, setProducts] = useState(null);
@@ -31,7 +31,7 @@ function Homepage() {
         position: 'relative'
       }}
     >
-      <TemporaryDrawer />
+      <CartDrawer />
 
       <Typography variant="h1" mt={5}>
         Shopper
