@@ -1,9 +1,10 @@
 import { Button, TextField, Typography } from '@mui/material';
 import { useContext, useState } from 'react';
 import CartContext from '../../contexts/CartContext';
+import { postOrder } from '../../services/service';
 
 export default function CartReview() {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
   const disabled = cart.some((product) => product.amount > product.qty_stock);
   const [order, setOrder] = useState({
     name: '',
@@ -25,13 +26,16 @@ export default function CartReview() {
 
   async function sendOrder(e) {
     e.preventDefault();
-    console.log('mandei pedido', order);
 
     try {
-      // const response = await postLogin(login);
+      await postOrder(order);
+      resetForm();
+      setCart([]);
+      localStorage.removeItem('shopper-cart');
+      alert('Seu pedido foi registrado, obrigado');
     } catch (error) {
       resetForm();
-      alert('Não foi possível logar, tente novamente');
+      alert('Não foi possível, tente novamente');
       console.error(error);
     }
   }

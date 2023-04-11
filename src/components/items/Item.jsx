@@ -34,12 +34,11 @@ export default function Item({ product }) {
   return (
     <Card sx={{ width: 200, height: 200, p: 1 }}>
       <CardContentNoPadding>
-        <Tooltip disableFocusListener title={product.name}>
+        <Tooltip disableFocusListener title={product.name} placement="top">
           <Typography
             gutterBottom
             variant="h6"
             sx={{
-              height: 128,
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               display: '-webkit-box',

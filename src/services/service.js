@@ -7,12 +7,13 @@ function getAllProducts() {
   return promise;
 }
 
-function getCart() {
-  const promise = axios.get(`${URL_BASE}/cart`);
+function postOrder(order) {
+  console.log(order);
+  const promise = axios.post(`${URL_BASE}/order`, order);
   return promise;
 }
 
 export {
   getAllProducts,
-  getCart
+  postOrder
 };
