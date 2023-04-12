@@ -5,11 +5,13 @@ import { postOrder } from '../../services/service';
 
 export default function CartReview() {
   const { cart, setCart } = useContext(CartContext);
-  const disabled = cart.some((product) => product.amount > product.qty_stock);
+  const disabled = (cart.length === 0
+    || cart.some((product) => product.amount > product.qty_stock));
+  const totalCost = Number(cart.filter((product) => product.amount <= product.qty_stock)
+    .reduce((sum, record) => sum + (record.amount * record.price), 0).toFixed(2));
   const [order, setOrder] = useState({
     name: '',
-    deliveryDate: '',
-    products: cart
+    deliveryDate: ''
   });
 
   function updateInput(e) {
@@ -19,16 +21,27 @@ export default function CartReview() {
   function resetForm() {
     setOrder({
       name: '',
-      deliveryDate: '',
-      products: []
+      deliveryDate: ''
     });
   }
 
   async function sendOrder(e) {
     e.preventDefault();
 
+    const orderInfo = {
+      customerName: order.name,
+      deliveryDate: new Date(order.deliveryDate),
+      totalCost,
+      products: cart
+    };
+
+    if (orderInfo.deliveryDate <= new Date()) {
+      alert('A data de entrega deve ser maior que hoje');
+      return;
+    }
+
     try {
-      await postOrder(order);
+      await postOrder(orderInfo);
       resetForm();
       setCart([]);
       localStorage.removeItem('shopper-cart');
@@ -43,8 +56,7 @@ export default function CartReview() {
   return (
     <>
       <Typography variant="h5" sx={{ textAlign: 'right', fontWeight: 700 }}>
-        {`Custo total: R$ ${cart.filter((product) => product.amount <= product.qty_stock)
-          .reduce((sum, record) => sum + (record.amount * record.price), 0).toFixed(2)}`}
+        {`Custo total: R$ ${totalCost}`}
       </Typography>
 
       <form style={{ display: 'flex', flexDirection: 'column', gap: 15 }} onSubmit={sendOrder}>

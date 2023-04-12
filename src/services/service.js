@@ -8,8 +8,7 @@ function getAllProducts() {
 }
 
 function postOrder(order) {
-  console.log(order);
-  const promise = axios.post(`${URL_BASE}/order`, order);
+  const promise = axios.post(`${URL_BASE}/order`, order, '');
   return promise;
 }
 

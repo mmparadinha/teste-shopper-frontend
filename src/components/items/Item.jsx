@@ -23,6 +23,7 @@ export default function Item({ product }) {
     } else {
       products = [...cart, {
         ...product,
+        price: Number(product.price),
         amount: 1
       }];
     }
